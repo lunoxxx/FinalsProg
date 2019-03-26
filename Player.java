@@ -12,8 +12,11 @@ public class Player extends GameObject{
 	private float gravity = 0.05f;
 	private final float MAX_SPEED = 10;
 
-	public Player(float x, float y, ObjectId id){
+	private Handler handler;
+
+	public Player(float x, float y, Handler handler, ObjectId id){
 		super(x, y, id);
+		this.handler = handler;
 	}
 
 	public void tick(LinkedList<GameObject> object){
@@ -25,6 +28,23 @@ public class Player extends GameObject{
 
 			if(velY > MAX_SPEED)
 				velY = MAX_SPEED;
+		}
+	}
+
+
+	private void Collision(LinkedList<GameObject> object){
+		for(int i = 0; i < handler.object.size(); i++){
+			GameObject tempObject = handler.object.get(i);
+
+			if(tempObject.getId()== ObjectId.Block){
+				if(getBounds().intersects(tempObject.getBounds())){
+					
+					y = tempObject.getY() - height;
+					velY= 0;
+					falling = false;
+					jumping = false;
+				}
+			}
 		}
 	}
 
