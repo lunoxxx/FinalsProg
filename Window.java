@@ -1,7 +1,9 @@
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import java.lang.Thread;
 import java.io.File;
 import java.io.IOException;
+
 
 public class Window{
 
@@ -19,6 +21,12 @@ public class Window{
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+
+		game.start();
+
+	public static void main(String args []){
+
+	}
 
 	}
 }
