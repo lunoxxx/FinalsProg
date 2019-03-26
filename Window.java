@@ -24,9 +24,5 @@ public class Window{
 
 		game.start();
 
-	public static void main(String args []){
-
-	}
-
 	}
 }

@@ -4,12 +4,32 @@ import java.lang.Object;
 import java.lang.Thread;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
+import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
 
 	// private static final long serialVersionUID
 	public boolean running = false;
 	private Thread thread;
+
+	public static int WIDTH, HEIGHT;
+
+	Handler handler;
+
+	Random rand = new Random();
+
+	private void init(){
+
+		WIDTH = getWidth();
+		HEIGHT = getHeight();
+
+		handler = new Handler();
+
+		handler.addObject(new Player(100, 100, ObjectId.Player));
+
+		for(int i = 0; i < 50; i++)
+		handler.addObject(new Test(rand.nextInt(800), rand.nextInt(600), ObjectId.Test));
+	}
 
 	public synchronized void start(){
 		if(running)
